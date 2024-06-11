@@ -51,7 +51,7 @@ public class FireGrowth : MonoBehaviour
 
             if (currentPercentage <= 0f)
             {
-                isGrowing = false; // Allow growth again if the percentage is at or below zero
+                isGrowing = false;
             }
         }
         else if (isGrowing) // If not decreasing, and still growing, increase the percentage

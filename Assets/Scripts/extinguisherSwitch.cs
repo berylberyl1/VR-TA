@@ -1,14 +1,22 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.XR;
+using UnityEngine.XR.Interaction.Toolkit;
 
 public class ExtinguisherSwitch : MonoBehaviour
 {
     public ParticleSystem particleSystem;
     public Collider assignedCollider;
-
-    private void Start()
+    private XRGrabInteractable grabInteractable;
+    public bool colliderEnabled = false;
+    public bool extinguisherOn = false;
+    
+    private void Awake()
     {
+        grabInteractable = GetComponent<XRGrabInteractable>();
+        grabInteractable.activated.AddListener(EnableExtinguisher);
+        grabInteractable.deactivated.AddListener(DisableExtinguisher);
         if (particleSystem == null)
         {
             particleSystem = GetComponent<ParticleSystem>();
@@ -19,7 +27,7 @@ public class ExtinguisherSwitch : MonoBehaviour
         }
         if (assignedCollider != null)
         {
-            assignedCollider.enabled = false;
+            assignedCollider.enabled = colliderEnabled;
         }
     }
 
@@ -29,7 +37,7 @@ public class ExtinguisherSwitch : MonoBehaviour
         {
             var mainModule = particleSystem.main;
 
-            if (Input.GetMouseButton(0)) // Left-click
+            if (extinguisherOn)
             {
                 mainModule.startLifetime = 1.0f; // Set Start Lifetime to 1 when left-click is held
 
@@ -48,5 +56,15 @@ public class ExtinguisherSwitch : MonoBehaviour
                 }
             }
         }
+    }
+
+    public void EnableExtinguisher(ActivateEventArgs args)
+    {
+        extinguisherOn = true;
+    }
+
+    public void DisableExtinguisher(DeactivateEventArgs args)
+    {
+        extinguisherOn = false;
     }
 }

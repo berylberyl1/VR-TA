@@ -9,7 +9,11 @@ EditorBuildSettings:
     path: Assets/Scenes/Movement Test.unity
     guid: 99c9720ab356a0642a771bea13969a05
   m_configObjects:
+    Unity.XR.Oculus.Settings: {fileID: 11400000, guid: da2c721d256fdb048893f202d74d86b9,
+      type: 2}
     com.unity.xr.management.loader_settings: {fileID: 11400000, guid: 8781785e7bc4dae4ba7a49596e9b4307,
       type: 2}
     com.unity.xr.openxr.settings4: {fileID: 11400000, guid: 1de96b5e3ec8f0346bb8ef88aa901533,
+      type: 2}
+    xr.sdk.mock-hmd.settings: {fileID: 11400000, guid: 41f5f49e3053e314c90749fb916712b0,
       type: 2}
